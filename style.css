@@ -16,3 +16,26 @@
   text-align: right;
   top: 200px;
 }
+
+.bottom1 {
+  margin: 4px;
+  font-size: 18px;
+  font-family: 'Avant Garde',sans-serif; 
+  font-weight: 200;
+  color: #90311A;
+  /* text-shadow: -1px 0 #ccc, 0 1px #ccc, 1px 0 #ccc, 0 -1px #ccc; */
+}
+
+.bottom2, a {
+  text-decoration: none;
+  margin: 4px;
+  font-size: 18px;
+  font-family: 'Avant Garde',sans-serif; 
+  font-weight: 200;
+  color: #90311A;
+  /* text-shadow: -1px 0 #ccc, 0 1px #ccc, 1px 0 #ccc, 0 -1px #ccc; */
+}
+
+a:hover {
+  text-decoration: underline;
+}
