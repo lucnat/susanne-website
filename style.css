@@ -24,8 +24,8 @@
   font-weight: 200;
   color: #ffffff;
 
-   text-shadow: -1px 0 #aaa, 0 1px #aaa, 1px 0 #aaa, 0 -1px #aaa; 
-}
+/*  text-shadow: -1px 0 #aaa, 0 1px #aaa, 1px 0 #aaa, 0 -1px #aaa; 
+*/}
 
 .bottom2, a {
   text-decoration: none;
@@ -34,9 +34,11 @@
   font-family: 'Helvetica',sans-serif; 
   font-weight: bold;
   color: #90311A;
-   text-shadow: -1px 0 #aaa, 0 1px #aaa, 1px 0 #aaa, 0 -1px #aaa; 
-}
+/*  text-shadow: -1px 0 #aaa, 0 1px #aaa, 1px 0 #aaa, 0 -1px #aaa; 
+*/}
 
 a:hover {
   text-decoration: underline;
 }
+
+4one

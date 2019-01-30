@@ -55,7 +55,7 @@ function goToStartPosition() {
 $(document).ready(() => {
   positionLeftElements();
   positionRightElements();
-  attachHoverEffects();
+  // attachHoverEffects();
   goToStartPosition();
 });
 
