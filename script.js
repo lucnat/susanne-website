@@ -21,7 +21,31 @@ function positionRightElements() {
   });
 }
 
+function resetAllTopElements() {
+  // if we are not above an element
+  let actuallyReset = true;
+  if ($('.vertical:hover').length == 0) {
+    $('.vertical').css('transform', 'rotate(-90deg)')
+    $('.vertical').css('top', '200px')
+  }
+}
+
+function attachHoverEffects() {
+  const elements = $('.vertical').get();
+  elements.forEach(e => {
+    $(e).mouseenter(() => {
+      $('.vertical').css('transform', 'rotate(-90deg)')
+      $('.vertical').css('top', '200px')
+      $(e).css('transform', 'rotate(0deg)')
+      $(e).css('top', '20px')
+
+      setTimeout(resetAllTopElements,1000);
+    });
+  });
+}
+
 $(document).ready(() => {
   positionLeftElements();
   positionRightElements();
+  attachHoverEffects();
 });

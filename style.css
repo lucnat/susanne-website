@@ -5,7 +5,7 @@
   margin-top: 100px;
   color: #ccc;
   font-size: 18px;
-  font-family: 'Avant Garde',sans-serif; 
+  font-family: 'Helvetica',sans-serif; 
   font-weight: 200;
 }
 
@@ -19,10 +19,12 @@
 
 .bottom1 {
   margin: 4px;
-  font-size: 18px;
-  font-family: 'Avant Garde',sans-serif; 
+  font-size: 15px;
+  font-family: 'Helvetica',sans-serif; 
   font-weight: 200;
-  color: #90311A;
+/*  color: #90311A;
+*/  color: #ffffff;
+
   /* text-shadow: -1px 0 #ccc, 0 1px #ccc, 1px 0 #ccc, 0 -1px #ccc; */
 }
 
@@ -30,10 +32,11 @@
   text-decoration: none;
   margin: 4px;
   font-size: 18px;
-  font-family: 'Avant Garde',sans-serif; 
-  font-weight: 200;
+  font-family: 'Helvetica',sans-serif; 
+  font-weight: bold;
   color: #90311A;
-  /* text-shadow: -1px 0 #ccc, 0 1px #ccc, 1px 0 #ccc, 0 -1px #ccc; */
+/*  color: #ffffff;
+*/  /* text-shadow: -1px 0 #ccc, 0 1px #ccc, 1px 0 #ccc, 0 -1px #ccc; */
 }
 
 a:hover {
