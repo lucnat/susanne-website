@@ -1,8 +1,11 @@
 
+let lastShowed = null;
+
 function positionLeftElements() {
+  const left = $('#left').width();
   let elements = $('.vertical.left').get();
   console.log(elements);
-  let first = -60;
+  let first = -60 + left;
   const increment = 33;
   elements.forEach(e => {
     $(e).css('left',first);
@@ -12,8 +15,9 @@ function positionLeftElements() {
 
 function positionRightElements() {
   // position the right elements
+  const left = $('#left').width();
   const elements = $('.vertical.right').get();
-  let first = 800;
+  let first = 800 + left;
   const increment = 33;
   elements.forEach(e => {
     $(e).css('left',first);
@@ -21,26 +25,40 @@ function positionRightElements() {
   });
 }
 
-function resetAllTopElements() {
-  // if we are not above an element
-  let actuallyReset = true;
-  if ($('.vertical:hover').length == 0) {
-    $('.vertical').css('transform', 'rotate(-90deg)')
-    $('.vertical').css('top', '200px')
-  }
+
+function showOne(e) {
+  lastShowed = e.innerHTML;
+  $(e).css('transform', 'rotate(0deg)')
+  $(e).css('transform', 'translate(-50px)')
+  $(e).css('top', '20px')
 }
 
-function attachHoverEffects() {
+function resetAll() {
+  $('.vertical').css('transform', 'rotate(-90deg)')
+  $('.vertical').css('top', '200px')
+}
+
+function resetOne(e) {
+  $(e).css('transform', 'rotate(-90deg)')
+  $(e).css('top', '200px')
+}
+
+function attachShowHorizontallyEffect() {
   const elements = $('.vertical').get();
   elements.forEach(e => {
     $(e).mouseenter(() => {
-      $('.vertical').css('transform', 'rotate(-90deg)')
-      $('.vertical').css('top', '200px')
-      $(e).css('transform', 'rotate(0deg)')
-      $(e).css('top', '20px')
-
-      setTimeout(resetAllTopElements,1000);
-    });
+      if(lastShowed == e.innerHTML) {
+        // weve just showed that one so let's not do anything
+        return;
+      } else {
+        // we're going to show this and undo all others
+        resetAll();
+        showOne(e);
+        setTimeout(() => {
+          resetOne(e);
+        }, 1500);
+      }
+    })
   });
 }
 
@@ -52,10 +70,15 @@ function goToStartPosition() {
   $("html, body").animate({ scrollTop: 1000, scrollLeft: x }, 50);
 }
 
+$( window ).resize(function() {
+  positionLeftElements();
+  positionRightElements()
+});
+
 $(document).ready(() => {
   positionLeftElements();
   positionRightElements();
-  // attachHoverEffects();
+  attachShowHorizontallyEffect();
   goToStartPosition();
 });
 

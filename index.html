@@ -3,7 +3,7 @@
 <html lang="en" style="height: 100%; overflow: auto">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <title>Susanne Quistorp</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -11,7 +11,8 @@
 </head>
 <body style="margin: 0px; height: 100%" >
   <div style="display: flex; flex-direction: horizontal">
-    <div style="width: 1300px; height: 920px; background-image: url('background.png')">
+    <div style="flex: 1"></div>
+    <div style="width: 1300px; height: 920px; background-image: url(background.png)">
       <div class="toptext" style="display: flex">
           <p class="vertical left">Haltung</p>
           <p class="vertical left">Positionierung</p>
@@ -62,6 +63,7 @@
         <div style="width: 45px"></div>
       </div>
     </div>
+    <div style="flex: 1" id="left"></div>
   </div>
 </body>
 </html>
