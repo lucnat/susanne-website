@@ -26,20 +26,31 @@ function positionRightElements() {
 }
 
 
+function transform(value) {
+  return {
+    '-webkit-transform' : value,
+    '-moz-transform'    : value,
+    '-ms-transform'     : value,
+    '-o-transform'      : value,
+    'transform'         : value
+  }
+}
+
+
 function showOne(e) {
   lastShowed = e.innerHTML;
-  $(e).css('transform', 'rotate(0deg)')
-  $(e).css('transform', 'translate(-50px)')
+  $(e).css(transform('rotate0deg'));
+  $(e).css(transform('translate(-50px)'));
   $(e).css('top', '20px')
 }
 
 function resetAll() {
-  $('.vertical').css('transform', 'rotate(-90deg)')
+  $('.vertical').css(transform('rotate(-90deg)'));
   $('.vertical').css('top', '200px')
 }
 
 function resetOne(e) {
-  $(e).css('transform', 'rotate(-90deg)')
+  $(e).css(transform('rotate(-90deg)'))
   $(e).css('top', '200px')
 }
 
