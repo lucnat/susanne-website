@@ -1,4 +1,7 @@
 
+
+// ---------- Begriffe Stuff ----------------
+
 let lastShowed = null;
 
 function positionLeftElements() {
@@ -25,7 +28,6 @@ function positionRightElements() {
   });
 }
 
-
 function transform(value) {
   return {
     '-webkit-transform' : value,
@@ -35,7 +37,6 @@ function transform(value) {
     'transform'         : value
   }
 }
-
 
 function showOne(e) {
   lastShowed = e.innerHTML;
@@ -76,13 +77,41 @@ function attachShowHorizontallyEffect() {
 $( window ).resize(function() {
   positionLeftElements();
   positionRightElements()
-});
+}); 
 
+// ---------- Initial Position Stuff ----------------
+
+function goToStartPosition() {
+  $("html, body").animate({ scrollTop: 0 }, 50);
+  const windowWidth = window.innerWidth;
+  const imageWidth = 1300;
+  const x = (imageWidth - windowWidth) / 2;
+  $("html, body").animate({ scrollTop: 1000, scrollLeft: x-20 }, 50);
+}
+
+// ---------- Mobile Specific Stuff ----------------
+
+function makeStaticOnMobile(){
+  // hide begriffe
+  $('.vertical').css('display','none') 
+  
+  // disable scrolling
+  const disableScrolling =  {margin: 0, height: '100%', overflow: 'hidden'};
+  $('html').css(disableScrolling);
+  $('body').css(disableScrolling);
+
+}
 
 $(document).ready(() => {
-  positionLeftElements();
-  positionRightElements();
-  attachShowHorizontallyEffect();
+  
+  if(window.innerWidth <= 800) {
+    makeStaticOnMobile();
+  } else {
+    positionLeftElements();
+    positionRightElements();
+    attachShowHorizontallyEffect();
+  }
+
 });
 
 
