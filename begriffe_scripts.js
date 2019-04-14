@@ -1,13 +1,13 @@
 
-
 // ---------- Begriffe Stuff ----------------
+
+let lastResize = new Date()
 
 let lastShowed = null;
 
 function positionLeftElements() {
   const left = $('#left').width();
   let elements = $('.vertical.left').get();
-  console.log(elements);
   let first = -60 + left;
   const increment = 33;
   elements.forEach(e => {
@@ -74,11 +74,6 @@ function attachShowHorizontallyEffect() {
   });
 }
 
-$( window ).resize(function() {
-  positionLeftElements();
-  positionRightElements()
-}); 
-
 // ---------- Initial Position Stuff ----------------
 
 function goToStartPosition() {
@@ -99,27 +94,41 @@ function makeStaticOnMobile(){
   const disableScrolling =  {margin: 0, height: '100%', overflow: 'hidden'};
   $('html').css(disableScrolling);
   $('body').css(disableScrolling);
-
 }
 
-$(document).ready(() => {
-  
+function scaleToBrowserWidth() {
+  const factor = window.innerWidth/1300;
+  const css = transform('scale('+ factor +')');
+  $('#container').css(css);
+}
+
+function init() {
+  // does everything when page loads or window size changes
   if(window.innerWidth <= 800) {
+    console.log('making static for mobile');
     makeStaticOnMobile();
   } else {
+    console.log('prearing for desktop');
     positionLeftElements();
     positionRightElements();
     attachShowHorizontallyEffect();
+    // scaleToBrowserWidth();
   }
+  goToStartPosition();
+} 
 
+
+$(window).resize(function() {
+  // only do it if after resize some time has passed
+  if(new Date() - lastResize > 1000) {
+    init();
+    lastResize = new Date();
+  }
+}); 
+
+
+$(document).ready(() => {
+  init();
 });
-
-
-
-
-
-
-
-
 
 
