@@ -97,8 +97,16 @@ function makeStaticOnMobile(){
 }
 
 function scaleToBrowserWidth() {
-  const factor = window.innerWidth/1300;
-  const css = transform('scale('+ factor +')');
+  const factor1 = window.innerWidth/1300;
+  const factor2 = window.innerHeight/920;
+  const factor = factor1 >= factor2 ? factor1 : factor2;
+
+  const css = {
+    'zoom': factor, 
+    '-moz-transform': 'scale('+factor+')',
+    '-moz-transform-origin': '0 0'
+  };
+  // const css = transform('scale('+ factor +')');
   $('#container').css(css);
 }
 
@@ -112,7 +120,7 @@ function init() {
     positionLeftElements();
     positionRightElements();
     attachShowHorizontallyEffect();
-    // scaleToBrowserWidth();
+    scaleToBrowserWidth();
   }
   goToStartPosition();
 } 
@@ -120,10 +128,7 @@ function init() {
 
 $(window).resize(function() {
   // only do it if after resize some time has passed
-  if(new Date() - lastResize > 1000) {
-    init();
-    lastResize = new Date();
-  }
+  init();
 }); 
 
 
