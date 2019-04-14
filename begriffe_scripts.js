@@ -1,7 +1,8 @@
 
 // ---------- Begriffe Stuff ----------------
 
-let lastResize = new Date()
+let lastResize = new Date();
+let needToInit = false;
 
 let lastShowed = null;
 
@@ -112,7 +113,7 @@ function scaleToBrowserWidth() {
 
 function init() {
   // does everything when page loads or window size changes
-  if(window.innerWidth <= 800) {
+  if(window.innerWidth <= 900) {
     console.log('making static for mobile');
     makeStaticOnMobile();
   } else {
