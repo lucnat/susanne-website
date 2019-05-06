@@ -1,10 +1,14 @@
 
+// ---------- Begriffe Stuff ----------------
+
+let lastResize = new Date();
+let needToInit = false;
+
 let lastShowed = null;
 
 function positionLeftElements() {
   const left = $('#left').width();
   let elements = $('.vertical.left').get();
-  console.log(elements);
   let first = -60 + left;
   const increment = 33;
   elements.forEach(e => {
@@ -25,7 +29,6 @@ function positionRightElements() {
   });
 }
 
-
 function transform(value) {
   return {
     '-webkit-transform' : value,
@@ -35,7 +38,6 @@ function transform(value) {
     'transform'         : value
   }
 }
-
 
 function showOne(e) {
   lastShowed = e.innerHTML;
@@ -73,32 +75,66 @@ function attachShowHorizontallyEffect() {
   });
 }
 
+// ---------- Initial Position Stuff ----------------
+
 function goToStartPosition() {
   $("html, body").animate({ scrollTop: 0 }, 50);
   const windowWidth = window.innerWidth;
   const imageWidth = 1300;
   const x = (imageWidth - windowWidth) / 2;
-  $("html, body").animate({ scrollTop: 1000, scrollLeft: x }, 50);
+  $("html, body").animate({ scrollTop: 1000, scrollLeft: x-20 }, 50);
 }
 
-$( window ).resize(function() {
-  positionLeftElements();
-  positionRightElements()
-});
+// ---------- Mobile Specific Stuff ----------------
+
+function makeStaticOnMobile(){
+  // hide begriffe
+  $('.vertical').css('display','none') 
+  
+  // disable scrolling
+  const disableScrolling =  {margin: 0, height: '100%', overflow: 'hidden'};
+  $('html').css(disableScrolling);
+  $('body').css(disableScrolling);
+}
+
+function scaleToBrowserWidth() {
+  const factor1 = window.innerWidth/1300;
+  const factor2 = window.innerHeight/920;
+  const factor = factor1 >= factor2 ? factor1 : factor2;
+
+  const css = {
+    'zoom': factor, 
+    '-moz-transform': 'scale('+factor+')',
+    '-moz-transform-origin': '0 0'
+  };
+  // const css = transform('scale('+ factor +')');
+  $('#container').css(css);
+}
+
+function init() {
+  // does everything when page loads or window size changes
+  if(window.innerWidth <= 900) {
+    console.log('making static for mobile');
+    makeStaticOnMobile();
+  } else {
+    console.log('prearing for desktop');
+    positionLeftElements();
+    positionRightElements();
+    attachShowHorizontallyEffect();
+    scaleToBrowserWidth();
+  }
+  goToStartPosition();
+} 
+
+
+$(window).resize(function() {
+  // only do it if after resize some time has passed
+  init();
+}); 
+
 
 $(document).ready(() => {
-  positionLeftElements();
-  positionRightElements();
-  attachShowHorizontallyEffect();
-  goToStartPosition();
+  init();
 });
-
-
-
-
-
-
-
-
 
 
